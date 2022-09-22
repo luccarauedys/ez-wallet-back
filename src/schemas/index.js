@@ -9,6 +9,6 @@ export const signUpSchema = Joi.object({
 export const transactionSchema = Joi.object({
   description: Joi.string().required(),
   value: Joi.number().required(),
-  type: Joi.string().valid(["deposit", "withdraw"]).required(),
+  type: Joi.string().valid("deposit", "withdraw").required(),
   date: Joi.string().required(),
 });
