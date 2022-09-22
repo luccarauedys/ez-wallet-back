@@ -1,11 +1,6 @@
 import { Router } from "express";
 
-import {
-  insertOne,
-  getMany,
-  // updateOne,
-  // deleteOne,
-} from "../controllers/transactions.controller.js";
+import { insertOne, getMany, deleteOne } from "../controllers/transactions.controller.js";
 
 import { validateToken } from "../middlewares/token.middleware.js";
 
@@ -14,7 +9,6 @@ transactionsRouter.use(validateToken);
 
 transactionsRouter.get("/", getMany);
 transactionsRouter.post("/", insertOne);
-// transactionsRouter.put("/:id", updateOne);
-// transactionsRouter.delete("/:id", deleteOne);
+transactionsRouter.delete("/:transactionId", deleteOne);
 
 export default transactionsRouter;
