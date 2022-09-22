@@ -1,3 +1,6 @@
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+
 import { createConnection, closeConnection } from "../database/mongodb.js";
 
 export async function signUp(data) {
