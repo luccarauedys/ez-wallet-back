@@ -19,7 +19,7 @@ export async function signUp(userData) {
     .collection("users")
     .insertOne({ name, email, password: bcrypt.hashSync(password, 10) });
 
-  await closeConnection();
+  closeConnection();
 }
 
 export async function signIn(userData) {
@@ -37,7 +37,7 @@ export async function signIn(userData) {
 export const checkIfUserExists = async (email, action) => {
   const db = await createConnection();
   const user = await db.collection("users").findOne({ email });
-  await closeConnection();
+  closeConnection();
 
   if (action === "sign up" && user)
     throw { status: 409, message: "Esse usuário já está cadastrado!" };

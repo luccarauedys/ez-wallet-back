@@ -7,7 +7,9 @@ import { transactionSchema } from "../schemas/index.js";
 export async function getMany(userId) {
   const db = await createConnection();
   const transactions = await db.collection("transactions").find({ userId }).toArray();
-  await closeConnection();
+
+  closeConnection();
+
   return transactions;
 }
 
@@ -16,7 +18,8 @@ export async function insertOne(transactionData, userId) {
 
   const db = await createConnection();
   await db.collection("transactions").insertOne({ ...transactionData, userId });
-  await closeConnection();
+
+  closeConnection();
 }
 
 export async function deleteOne(userId, transactionId) {
@@ -29,5 +32,5 @@ export async function deleteOne(userId, transactionId) {
   if (transaction)
     await db.collection("transactions").deleteOne({ _id: new ObjectId(transactionId) });
 
-  await closeConnection();
+  closeConnection();
 }
